@@ -1,1612 +1,288 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-* {
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    background-color: #F5F5F5;
-    //background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2394AB85' fill-opacity='0.4'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    /*-webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.3);*/
-    border-radius: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0);
-    /*-webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);*/
-}
-
-.page {
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    height: 80%;
-    max-width: 1200px;
-    box-shadow: 1px 1px 3px #ebebeb;
-    border-radius: 5px;
-}
-
-.page .side-bar {
-    width: 50px;
-    background-color: #2e2e2e;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.page .mid-bar {
-    width: 300px;
-    background-color: #ebebeb;
-    border-right: solid 1px #d6d6d6;
-}
-
-.page .main-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background-color: #f5f5f5;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.page .main-body .title-bar {
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.page .main-body .title-bar p {
-    margin: 5px 25px 5px 25px;
-    font-size: 18px;
-}
-
-.page .main-body .container {
-    flex: 1;
-    border-top: solid 3px #f0f0f0;
-    border-bottom: solid 3px #f0f0f0;
-}
-
-.page .main-body .nav-bar {
-    height: 180px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.page .main-body .nav-bar .turner-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: #2e2e2e;
-    font-size: 16px;
-    transform: translateY(-10px);
-    user-select: none;
-}
-
-.page .main-body .nav-bar .turner-bar .button {
-    display: inline-block;
-    background-color: #d6d6d6;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 10px 15px 10px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.page .main-body .nav-bar .turner-bar .button:hover {
-    background-color: #ebebeb;
-}
-
-.page .main-body .nav-bar .turner-bar p {
-    display: inline-block;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-
-.page .main-body .nav-bar .turner-bar input {
-    border: none;
-    resize: none;
-    outline: none;
-    background: none;
-    border-bottom: solid 1px #1F1F1F;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 600;
-    height: 24px;
-    width: 50px;
-}
-
-
-.container {
-    /*height: 80vh;*/
-    /*width: 100%;*/
-    /*max-width: 900px;*/
-    /*border-radius: 4px;*/
-    /*border: 0.5px solid #e0e0e0;*/
-    /*background-color: #f5f5f5;*/
-    display: flex;
-    /* flex-flow: column; */
-    overflow: hidden;
-    justify-content: center; /* 在主轴上居中 */
-}
-
-.container .content {
-    width: calc(100% - 40px);
-    padding: 20px;
-    overflow-y: scroll;
-    flex: 1;
-}
-
-.container .content:hover::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.1);
-}
-
-.container .content:hover::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.container .content {
-}
-.bubble {
-    white-space: pre-wrap;
-    max-width: 400px;
-    padding: 10px 11px 10px 11px;
-    border-radius: 5px;
-    position: relative;
-    color: #1F1F1F;
-    font-size: 14px;
-    word-wrap: break-word;
-    word-break: normal;
-}
-
-.chat-refer {
-    margin-top: 5px;
-    max-width: 400px;
-    padding: 8px 10px 8px 10px;
-    border-radius: 3px;
-    position: relative;
-    color: #797979;
-    font-size: 12px;
-    background-color: #e8e8e8;
-    word-wrap: break-word;
-    word-break: normal;
-}
-
-.chat-refer-right {
-    margin-right: 15px;
-}
-
-.chat-refer-left {
-    margin-left: 15px;
-}
-
-.item-left .bubble {
-    margin-left: 15px;
-    background-color: #fff;
-}
-
-.item-left .bubble:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-top: 10px solid transparent;
-    border-right: 10px solid #fff;
-    border-bottom: 10px solid transparent;
-    left: -20px;
-}
-
-.item-right .bubble {
-    margin-right: 15px;
-    background-color: #9eea6a;
-}
-
-.item-right .bubble:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 10px solid #9eea6a;
-    border-top: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    right: -20px;
-}
-
-.item {
-    margin-top: 15px;
-    display: flex;
-    width: 100%;
-}
-
-.item-refer {
-    margin-top: 4px;
-}
-
-.item.item-right {
-    justify-content: flex-end;
-}
-
-.item.item-center {
-    justify-content: center;
-}
-
-.item.item-center span {
-    font-size: 12px;
-    padding: 2px 4px;
-    color: #fff;
-    background-color: #dadada;
-    border-radius: 3px;
-    -moz-user-select: none; /*火狐*/
-    -webkit-user-select: none; /*webkit浏览器*/
-    -ms-user-select: none; /*IE10*/
-    -khtml-user-select: none; /*早期浏览器*/
-    user-select: none;
-}
-
-.content-wrapper {
-    display: flex;
-    flex-direction: column;
-}
-
-.content-wrapper-left {
-    align-items: baseline;
-}
-
-.content-wrapper-right {
-    align-items: flex-end;
-}
-
-.displayname {
-    margin-left: 13px;
-    margin-left: 13px;
-    font-size: 13px;
-    margin-bottom: 5px;
-    color: darkgray;
-}
-
-.chat-image img, .chat-file img {
-    margin-right: 18px;
-    margin-left: 18px;
-    max-width: 300px;
-    /*max-height: auto;*/
-}
-
-.avatar img {
-    width: 42px;
-    height: 42px;
-    border-radius: 3px;
-    user-select: none;
-}
-
-.chat-video video {
-    margin-right: 18px;
-    margin-left: 18px;
-    max-width: 350px;
-}
-
-.chat-audio {
-    max-width: 400px;
-}
-
-audio {
-    margin-left: 9px;
-    margin-right: 9px;
-}
-
-.chat-music-audio, .chat-file {
-    width: 300px;
-    margin-right: 20px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    height: 100px;
-    margin-left: 10px;
-}
-
-.chat-file img {
-    width: 50px;
-}
-
-.chat-music-audio .player-box, .chat-file .file-box {
-    width: 300px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    height: 80px;
-}
-
-.chat-music-audio .player-original, .chat-file .app-info {
-    border-top: 1px solid #ede3e3;
-}
-
-.chat-music-audio .player-original p, .chat-file .app-info p {
-    margin-top: 3px;
-    color: #888;
-}
-
-.chat-music-audio .player-controls, .chat-file .file-img {
-    display: flex;
-    align-items: center;;
-}
-
-.file-title, .card-content > h2, .description > p {
-    display: -webkit-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-}
-
-.file-title, .card-content > h2 {
-    -webkit-line-clamp: 2;
-}
-
-.description > p {
-    -webkit-line-clamp: 3;
-    margin-top: 2px;
-}
-
-
-.chat-music-audio .flex1, .chat-file .flex1 {
-    flex: 1;
-    justify-content: start;
-}
-
-.chat-music-audio .flex2, .chat-file .flex2 {
-    flex: 2;
-    justify-content: end;
-}
-
-.chat-music-audio .player-info, .chat-file .file-info {
-    width: 200px;
-    height: 80px;
-    margin-left: 4px;
-    margin-top: 15px;
-    white-space: normal;
-    flex-basis: 200px;
-    word-break: break-word;
-}
-
-.chat-music-audio .song-title, .chat-file .file-name {
-    font-weight: bold;
-    overflow-wrap: break-word;
-}
-
-.chat-music-audio .artist, .chat-file .file-size {
-    margin-top: 5px;
-    color: #888;
-}
-
-.app-info {
-    font-size: 13px;
-    margin-left: 3px;
-    margin-right: 3px;
-}
-
-.file-size {
-    font-size: 14px;
-}
-
-.chat-music-audio .play-button {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 50%;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
-.chat-music-audio .play-button.playing {
-    background: url("./icon/pause.png");
-}
-
-.chat-music-audio .play-button.paused {
-    background: url("./icon/play.png");
-}
-
-.input-area {
-    border-top: 0.5px solid #e0e0e0;
-    height: 150px;
-    display: flex;
-    flex-flow: column;
-    background-color: #fff;
-}
-
-textarea {
-    flex: 1;
-    padding: 5px;
-    font-size: 14px;
-    border: none;
-    cursor: pointer;
-    overflow-y: auto;
-    overflow-x: hidden;
-    outline: none;
-    resize: none;
-}
-
-.button-area {
-    display: flex;
-    height: 40px;
-    margin-right: 10px;
-    line-height: 40px;
-    padding: 5px;
-    justify-content: flex-end;
-}
-
-.button-area button {
-    width: 80px;
-    border: none;
-    outline: none;
-    border-radius: 4px;
-    float: right;
-    cursor: pointer;
-}
-
-.button-row,
-.jump-row,
-#paginationInfo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-button {
-    padding: 10px 25px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 0 14px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-input {
-    padding: 8px;
-    width: 120px;
-    box-sizing: border-box;
-    margin-right: 0px;
-    margin-left: 15px;
-}
-
-button,
-input {
-    font-size: 14px;
-}
-
-#paginationInfo {
-    color: #555;
-    font-size: 14px;
-}
-
-/* 分享的卡片 */
-
-.card {
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin: 5px 20px 20px 20px;
-}
-
-.card a {
-    text-decoration: none; /* 去掉链接的下划线 */
-    color: inherit; /* 继承父元素的文字颜色 */
-
-}
-
-.card-content {
-    padding: 20px;
-    flex: 1;
-}
-
-.thumbnail {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-}
-
-.description {
-    display: flex;
-    justify-content: space-between;
-}
-
-.link-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    background-color: #f0f0f0;
-}
-
-.app-logo {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    border-radius: 50%;
-}
-
-.app-name {
-    font-weight: bold;
-}
-
-@media screen and (max-width: 768px) {
-    .button-row,
-    .jump-row,
-    #paginationInfo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 0px;
-    }
-
-    button {
-        padding: 5px 10px;
-        background-color: #3498db;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin: 0 5px;
-        transition: background-color 0.3s;
-    }
-
-    button:hover {
-        background-color: #2980b9;
-    }
-
-    input {
-        padding: 8px;
-        width: 120px;
-        box-sizing: border-box;
-        margin-right: 0px;
-        margin-left: 5px;
-    }
-}
-
-.system-msg > .emoji_img {
-    width: 18px;
-    height: 18px;
-}
-
-.emoji_img {
-    width: 22px;
-    height: 22px;
-    vertical-align: middle;
-    margin-top: -4.4px;
-}
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.modal-image {
-    display: block;
-    max-width: 90%;
-    max-height: 90%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-@media screen and (max-width: 768px) {
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    ::-webkit-scrollbar {
-        display: none;
-    }
-
-    .page {
-        width: 100%;
-        height: 100%;
-        box-shadow: none;
-    }
-
-    .page .side-bar, .page .mid-bar {
-        display: none
-    }
-
-    .page .main-body .nav-bar {
-        height: 120px;
-    }
-
-    .page .main-body .nav-bar .turner-bar {
-        transform: none;
-        font-size: 12px;
-    }
-
-    .page .main-body .nav-bar .turner-bar input {
-        font-size: 14px;
-    }
-
-    .page .main-body .nav-bar .turner-bar .button {
-        padding: 10px 12px 10px 12px;
-    }
-}
-</style>
-    <title></title>
+    <meta name="360-analysis-id" content="2w1j1d382x352p2s">
+    <meta charset="utf-8">
+    <style type="text/css">
+	p{font-weight:bold;}
+	p{font-weight:1000;}
+	p{font-size:48px;}
+	p{font-family:"楷体";}
+	</style>
+    <title>跨年快乐</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link href="files/css/main.css" rel="stylesheet">
+    <script src="files/js/jquery.min.js" type="text/javascript"></script>
+    <script>
+        var shouci = true;
+        console.log(shouci);
+
+        function bodyPlayMusic() {
+            if (shouci) {
+                shouci = false;
+                audio.play();
+                console.log(shouci);
+            }
+        };
+    </script>
 </head>
+<!-- onclick="bodyPlayMusic()" -->
+
 <body>
-<div class="page">
-    <div class="side-bar"></div>
-    <div class="mid-bar"></div>
-    <div class="main-body">
-        <div class="title-bar"><p id="title">akil</p></div>
-        <div class="container">
-            <div class="content" id="chat-container" onscroll="checkScroll()">
-                
+
+    <audio id="audioDom" src="files/music.m4a" preload="auto" loop="loop"></audio>
+
+    <div id="yhBtn" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff ; font-size:20px    ">
+        <p>💥点击我(如果点击没反应请等几秒再点awa)💥</p>
+        <img style="width:64px;margin-bottom:36px " src="files/boom.png">
+    </div>
+
+    <div style="height: 0; width: 0; position: absolute; visibility: hidden;">
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <symbol id="icon-play" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"></path>
+            </symbol>
+            <symbol id="icon-pause" viewBox="0 0 24 24">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+            </symbol>
+            <symbol id="icon-close" viewBox="0 0 24 24">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                </path>
+            </symbol>
+            <symbol id="icon-settings" viewBox="0 0 24 24">
+                <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z">
+                </path>
+            </symbol>
+            <symbol id="icon-sound-on" viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z">
+                </path>
+            </symbol>
+            <symbol id="icon-sound-off" viewBox="0 0 24 24">
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z">
+                </path>
+            </symbol>
+        </svg>
+    </div>
+
+    <!-- App -->
+    <div class="container">
+        <div class="loading-init">
+            <div class="loading-init__header"></div>
+            <div class="loading-init__status"></div>
+        </div>
+        <div class="stage-container remove">
+            <div class="page_two hide">
+                <div id="text" style="display:none;">
+                    <p>
+                        🎉🎊 新年快乐！🎊🎉<br>
+                        🌟 2025年到啦，愿你的每一天都像🌈虹一样绚烂多彩，🌟光一样璀璨夺目！<br>
+                        🍀 愿你的好运连连，像小🐇子一样蹦蹦跳跳，🌼快乐无边！<br>
+                        🎈 愿你的事业像🚀箭一样一飞冲天，💼工作顺顺利利！<br>
+                        🍰 愿你的生活甜如🍓莓蛋糕，每一天都有小确幸，🥳笑容满面！<br>
+                        💖 愿你的心中充满爱，像💌粉色信封一样，装满甜蜜的话语。<br>
+                        🌟 愿你的每一步都坚定而有力，像🦄独角兽一样勇敢追梦！<br>
+                        🎁 最后，送你一个大大的🎁礼物，里面装满了我的祝福和希望，愿你新的一年里，健康、快乐、幸福、成功！<br>
+                        🥳🎉 让我们一起迎接美好的2025年吧！🎉🥳<br>
+                        希望这段祝福语能给你带来温暖和快乐！💕🌟<br>
+                        <br>
+                        <br>
+                        <br>
+                        还有<span id="time"></span><br><span id="text1"></span><br>
+                    <br><br><span id="copyright"></span></p></div>
+                <div class="type_words" id="contents" style="font-size:1.15rem;line-height:1.5rem;"></div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="trails-canvas"></canvas>
+                <canvas id="main-canvas"></canvas>
+            </div>
+
+            <div class="menu hide">
+                <div class="menu__inner-wrap">
+
+                    <div class="menu__header">设置</div>
+
+                    <form>
+                        <div class="form-option form-option--select">
+                            <label class="shell-type-label">烟花类型</label>
+                            <select class="shell-type"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="shell-size-label">烟花大小</label>
+                            <select class="shell-size"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="quality-ui-label">画质</label>
+                            <select class="quality-ui"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="sky-lighting-label">天空照明</label>
+                            <select class="sky-lighting"></select>
+                        </div>
+                        <div class="form-option form-option--select">
+                            <label class="scaleFactor-label">规模</label>
+                            <select class="scaleFactor"></select>
+                        </div>
+                        <div class="form-option form-option--checkbox">
+                            <label class="auto-launch-label">自动发射</label>
+                            <input class="auto-launch" type="checkbox">
+                        </div>
+                        <div class="form-option form-option--checkbox form-option--finale-mode">
+                            <label class="finale-mode-label">结局模式</label>
+                            <input class="finale-mode" type="checkbox">
+                        </div>
+                        <div class="form-option form-option--checkbox">
+                            <label class="hide-controls-label">隐藏控制器</label>
+                            <input class="hide-controls" type="checkbox">
+                        </div>
+                        <div class="form-option form-option--checkbox form-option--fullscreen">
+                            <label class="fullscreen-label">全屏</label>
+                            <input class="fullscreen" type="checkbox">
+                        </div>
+                        <div class="form-option form-option--checkbox">
+                            <label class="long-exposure-label">打开快门</label>
+                            <input class="long-exposure" type="checkbox">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-                    <div class="navgator" Vaalue="1" id="gotoPage" onchange="gotoPage()"> </div><p
-                            id="maxPage"></p>
+        <div class="help-modal">
+            <div class="help-modal__overlay"></div>
+            <div class="help-modal__dialog">
+                <div class="help-modal__header"></div>
+                <div class="help-modal__body"></div>
+                <button type="button" class="help-modal__close-btn">关闭</button>
+            </div>
         </div>
     </div>
-</div>
-<div id="modal" class="modal" onclick="hideModal()">
-    <img id="modal-image" class="modal-image">
-</div>
-<script>
-const chatMessages =[{ type:1, text: '我算是理解你之前是什么感受了，动不动就删掉你的微信，对此我深感抱歉。那时的我，真是太过幼稚。虽然我不清楚你删除我微信的具体原因，是出于生气还是伤心，但我都恳请你不要因此记恨我。\n\
-我猜这或许是最后一次与你对话的机会了，我很沮丧以后再不能和你聊天了。从我开始认识你那一刻起。不止一次幻想过我们携手共度余生，憧憬着我们可以永远在一起。但似乎不是世上所有的愿望能够如愿以偿，我们没能走到最后。如果平行时空真的存在，我相信在某一个世界里，我们一定是幸福的伴侣。真是羡慕那些家伙。\n\
-与你分离的过程，对我来说是一次痛苦的历练。我深感抱歉，即使在你可能不愿搭理我的时候，我还试图通过聊天来寻找一丝慰藉，甚至说出了些许暧昧的话语，这或许给你带来了不必要的困扰。\n\
-我想所有故事都有其必然的结局，与你共度的时光，是我生命中不可多得的宝贵记忆。我们一起分享过的书籍、动漫，共同仰望过的星空，还有那些坐在石块与木块交织的椅子上数星星的夜晚，每一个瞬间都充满了浪漫与温馨。我很感激能与你相遇，与你共同经历了疫情的挑战、高考的洗礼，和对方倾诉家常，甚至一度把你家的猫当作了自己的家人，哈哈哈。\n\
-我深知你的坚强，但我更希望你能在未来的日子里，不必独自面对所有的伤心与困难。我尊重你的选择，发这个好友请求只为了表达来迟了两年的告别，可以，虽然我可能没有给你留下太多深刻的记忆，但我仍希望你能将我遗忘，而我也将努力去做同样的事。\n\
-最后，我想对你说：请一定要幸福。在未来的日子里，愿你不再感到不幸，因为你本身就是一个幸运且可爱的女孩。愿你的笑容永远灿烂，快乐常伴左右！\n\
-（time： 2024/07/30 19:43 星期二）',is_send:0,avatar_path:'https://wx.qlogo.cn/mmhead/ver_1/ibJzaAUaictFdQCKDNYfOpmVHD6PjjB8y8stKxkU7ancoHKYta5NNHVVZZAzoqgcibH4FZvF03eoB5RQwB48TsHbRC9ic8FAicRIdtwgTX3U2BVY/132',timestamp:1722401413,is_chatroom:0,displayname:'None'}]
-</script>
-<script>
-const chatContainer = document.getElementById('chat-container');
 
-function checkEnter(event) {
-    if (event.keyCode === 13) {
-        gotoPage();
-    }
-}
+    <script src="files/jump.js"></script><!--!‬‏‬‫‭‫‫‬‫‭‫‬‬‏‭‭‪‏‬‎‫‬‎‎-->
 
-const itemsPerPage = 100; // 每页显示的元素个数
-let currentPage = 1; // 当前页
-var reachedBottom = false; // 到达底部的标记
-var lastScrollTop = 0;
-var lastTimeStamp = 0;
+    <!-- partial -->
+    <script src="files/js/fscreen%401.0.1.js"></script><!--!‬‏‬‫‭‫‫‬‫‭‫‬‬‏‭‭‪‏‬‎‫‬‎‎-->
+    <script src="files/js/Stage%400.1.4.js"></script><!--!‬‏‬‫‭‫‫‬‫‭‫‬‬‏‭‭‪‏‬‎‫‬‎‎-->
+    <script src="files/js/MyMath.js"></script><!--!‬‏‬‫‭‫‫‬‫‭‫‬‬‏‭‭‪‏‬‎‫‬‎‎-->
+    <script src="files/js/script.js"></script><!--!‬‏‬‫‭‫‫‬‫‭‫‬‬‏‭‭‪‏‬‎‫‬‎‎-->
 
-function renderPage(page) {
-    const totalPages = Math.ceil(chatMessages.length / itemsPerPage);
-    // document.getElementById('curPage').innerHTML = currentPage;
-    document.getElementById('gotoPage').Vaalue = currentPage;
-    document.getElementById('maxPage').innerHTML = '';
-    const container = document.getElementById('chat-container');
-    if (!reachedBottom) {
-        container.innerHTML = ''; // 清空容器
-        lastScrollTop = 0;
-        lastTimeStamp = 0;
-    } else {
-        reachedBottom = false;
-    }
-
-    // 计算当前页应该显示的元素范围
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-
-    // 工具类函数
-    function replaceEmoji(text) {
-
-        // 定义替换规则，可以根据需要添加更多规则
-        var replacementRules = [
-            {
-                pattern: /\[微笑\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_1@2x.png" id="微笑" class="emoji_img">'
-            },
-            {
-                pattern: /\[发呆\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_4@2x.png" id="发呆" class="emoji_img">'
-            },
-            {
-                pattern: /\[撇嘴\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_2@2x.png" id="撇嘴" class="emoji_img">'
-            },
-            {
-                pattern: /\[色\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_3@2x.png" id="色" class="emoji_img">'
-            },
-            {
-                pattern: /\[发呆\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_4@2x.png" id="发呆" class="emoji_img">'
-            },
-            {
-                pattern: /\[得意\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_5@2x.png" id="得意" class="emoji_img">'
-            },
-            {
-                pattern: /\[流泪\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_6@2x.png" id="流泪" class="emoji_img">'
-            },
-            {
-                pattern: /\[害羞\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_7@2x.png" id="害羞" class="emoji_img">'
-            },
-            {
-                pattern: /\[闭嘴\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_8@2x.png" id="闭嘴" class="emoji_img">'
-            },
-            {
-                pattern: /\[睡\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_9@2x.png" id="睡" class="emoji_img">'
-            },
-            {
-                pattern: /\[大哭\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_10@2x.png" id="大哭" class="emoji_img">'
-            },
-            {
-                pattern: /\[尴尬\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_11@2x.png" id="尴尬" class="emoji_img">'
-            },
-            {
-                pattern: /\[发怒\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_12@2x.png" id="发怒" class="emoji_img">'
-            },
-            {
-                pattern: /\[调皮\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_13@2x.png" id="调皮" class="emoji_img">'
-            },
-            {
-                pattern: /\[呲牙\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_14@2x.png" id="呲牙" class="emoji_img">'
-            },
-            {
-                pattern: /\[惊讶\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_15@2x.png" id="惊讶" class="emoji_img">'
-            },
-            {
-                pattern: /\[难过\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_16@2x.png" id="难过" class="emoji_img">'
-            },
-            {
-                pattern: /\[抓狂\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_19@2x.png" id="抓狂" class="emoji_img">'
-            },
-            {
-                pattern: /\[吐\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_20@2x.png" id="吐" class="emoji_img">'
-            },
-            {
-                pattern: /\[偷笑\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_21@2x.png" id="偷笑" class="emoji_img">'
-            },
-            {
-                pattern: /\[愉快\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_22@2x.png" id="愉快" class="emoji_img">'
-            },
-            {
-                pattern: /\[白眼\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_23@2x.png" id="白 眼" class="emoji_img">'
-            },
-            {
-                pattern: /\[傲慢\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_24@2x.png" id="傲慢" class="emoji_img">'
-            },
-            {
-                pattern: /\[困\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_26@2x.png" id="困" class="emoji_img">'
-            },
-            {
-                pattern: /\[惊恐\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_27@2x.png" id="惊恐" class="emoji_img">'
-            },
-            {
-                pattern: /\[憨笑\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_29@2x.png" id="憨笑" class="emoji_img">'
-            },
-            {
-                pattern: /\[悠闲\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_30@2x.png" id="悠闲" class="emoji_img">'
-            },
-            {
-                pattern: /\[咒骂\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_32@2x.png" id="咒骂" class="emoji_img">'
-            },
-            {
-                pattern: /\[疑问\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_33@2x.png" id="疑问" class="emoji_img">'
-            },
-            {
-                pattern: /\[嘘\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_34@2x.png" id="嘘" class="emoji_img">'
-            },
-            {
-                pattern: /\[晕\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_35@2x.png" id="晕" class="emoji_img">'
-            },
-            {
-                pattern: /\[衰\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_37@2x.png" id="衰" class="emoji_img">'
-            },
-            {
-                pattern: /\[骷髅\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_38@2x.png" id="骷髅" class="emoji_img">'
-            },
-            {
-                pattern: /\[敲打\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_39@2x.png" id="敲打" class="emoji_img">'
-            },
-            {
-                pattern: /\[再见\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_40@2x.png" id="再见" class="emoji_img">'
-            },
-            {
-                pattern: /\[擦汗\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_41@2x.png" id="擦汗" class="emoji_img">'
-            },
-            {
-                pattern: /\[抠鼻\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_42@2x.png" id="抠鼻" class="emoji_img">'
-            },
-            {
-                pattern: /\[鼓掌\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_43@2x.png" id="鼓掌" class="emoji_img">'
-            },
-            {
-                pattern: /\[坏笑\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_45@2x.png" id="坏笑" class="emoji_img">'
-            },
-            {
-                pattern: /\[右哼哼\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_47@2x.png" id="右哼哼" class="emoji_img">'
-            },
-            {
-                pattern: /\[鄙视\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_49@2x.png" id="鄙视" class="emoji_img">'
-            },
-            {
-                pattern: /\[委屈\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_50@2x.png" id="委屈" class="emoji_img">'
-            },
-            {
-                pattern: /\[快哭了\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_51@2x.png" id="快哭了" class="emoji_img">'
-            },
-            {
-                pattern: /\[阴险\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_52@2x.png" id="阴险" class="emoji_img">'
-            },
-            {
-                pattern: /\[亲亲\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_53@2x.png" id="亲亲" class="emoji_img">'
-            },
-            {
-                pattern: /\[可怜\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_55@2x.png" id="可怜" class="emoji_img">'
-            },
-            {
-                pattern: /\[Whimper\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_55@2x.png" id="可怜" class="emoji_img">'
-            },
-            {
-                pattern: /\[笑脸\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Happy.png" id="笑脸" class="emoji_img">'
-            },
-            {
-                pattern: /\[生病\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Sick.png" id="生病" class="emoji_img">'
-            },
-            {
-                pattern: /\[脸红\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Flushed.png" id="脸红" class="emoji_img">'
-            },
-            {
-                pattern: /\[破涕为笑\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Lol.png" id="破涕为笑" class="emoji_img">'
-            },
-            {
-                pattern: /\[恐惧\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Terror.png" id="恐惧" class="emoji_img">'
-            },
-            {
-                pattern: /\[失望\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/LetDown.png" id="失望" class="emoji_img">'
-            },
-            {
-                pattern: /\[无语\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Duh.png" id="无语" class="emoji_img">'
-            },
-            {
-                pattern: /\[嘿哈\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/2_04.png" id="嘿哈" class="emoji_img">'
-            },
-            {
-                pattern: /\[捂脸\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/2_05.png" id="捂脸" class="emoji_img">'
-            },
-            {
-                pattern: /\[奸笑\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/2_02.png" id="奸笑" class="emoji_img">'
-            },
-            {
-                pattern: /\[机智\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/2_06.png" id="机智" class="emoji_img">'
-            },
-            {
-                pattern: /\[皱眉\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/2_12.png" id="皱眉" class="emoji_img">'
-            },
-            {
-                pattern: /\[耶\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/2_11.png" id="耶" class="emoji_img">'
-            },
-            {
-                pattern: /\[吃瓜\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Watermelon.png" id="吃瓜" class="emoji_img">'
-            },
-            {
-                pattern: /\[加油\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Addoil.png" id="加油" class="emoji_img">'
-            },
-            {
-                pattern: /\[汗\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Sweat.png" id="汗" class="emoji_img">'
-            },
-            {
-                pattern: /\[天啊\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Shocked.png" id="天啊" class="emoji_img">'
-            },
-            {
-                pattern: /\[Emm\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Cold.png" id="Emm" class="emoji_img">'
-            },
-            {
-                pattern: /\[社会社会\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Social.png" id="社会社会" class="emoji_img">'
-            },
-            {
-                pattern: /\[旺柴\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Yellowdog.png" id="旺柴" class="emoji_img">'
-            },
-            {
-                pattern: /\[好的\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/NoProb.png" id="好的" class="emoji_img">'
-            },
-            {
-                pattern: /\[打脸\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Slap.png" id="打脸" class="emoji_img">'
-            },
-            {
-                pattern: /\[哇\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Wow.png" id="哇" class="emoji_img">'
-            },
-            {
-                pattern: /\[翻白眼\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Boring.png" id="翻白眼" class="emoji_img">'
-            },
-            {
-                pattern: /\[666\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/666.png" id="666" class="emoji_img">'
-            },
-            {
-                pattern: /\[让我看看\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/LetMeSee.png" id="让我看看" class="emoji_img">'
-            },
-            {
-                pattern: /\[叹气\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Sigh.png" id="叹气" class="emoji_img">'
-            },
-            {
-                pattern: /\[苦涩\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Hurt.png" id="苦涩" class="emoji_img">'
-            },
-            {
-                pattern: /\[難受\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Hurt.png" id="苦涩" class="emoji_img">'
-            },
-            {
-                pattern: /\[裂开\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Broken.png" id="裂开" class="emoji_img">'
-            },
-            {
-                pattern: /\[嘴唇\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_66@2x.png" id="嘴唇" class="emoji_img">'
-            },
-            {
-                pattern: /\[爱心\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_67@2x.png" id="爱心" class="emoji_img">'
-            },
-            {
-                pattern: /\[心碎\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_68@2x.png" id="心碎" class="emoji_img">'
-            },
-            {
-                pattern: /\[拥抱\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_79@2x.png" id="拥抱" class="emoji_img">'
-            },
-            {
-                pattern: /\[强\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_80@2x.png" id="强" class="emoji_img">'
-            },
-            {
-                pattern: /\[弱\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_81@2x.png" id="弱" class="emoji_img">'
-            },
-            {
-                pattern: /\[握手\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_82@2x.png" id="握手" class="emoji_img">'
-            },
-            {
-                pattern: /\[胜利\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_83@2x.png" id="胜利" class="emoji_img">'
-            },
-            {
-                pattern: /\[抱拳\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_84@2x.png" id="抱拳" class="emoji_img">'
-            },
-            {
-                pattern: /\[勾引\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_85@2x.png" id="勾引" class="emoji_img">'
-            },
-            {
-                pattern: /\[拳头\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_86@2x.png" id="拳头" class="emoji_img">'
-            },
-            {
-                pattern: /\[OK\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_90@2x.png" id="OK" class="emoji_img">'
-            },
-            {
-                pattern: /\[合十\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Worship.png" id="合十" class="emoji_img">'
-            },
-            {
-                pattern: /\[啤酒\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_58@2x.png" id="啤酒" class="emoji_img">'
-            },
-            {
-                pattern: /\[咖啡]\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_61@2x.png" id="咖啡" class="emoji_img">'
-            },
-            {
-                pattern: /\[蛋糕\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_69@2x.png" id="蛋糕" class="emoji_img">'
-            },
-            {
-                pattern: /\[玫瑰\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_64@2x.png" id="玫 瑰" class="emoji_img">'
-            },
-            {
-                pattern: /\[凋谢\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_65@2x.png" id="凋谢" class="emoji_img">'
-            },
-            {
-                pattern: /\[菜刀\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_56@2x.png" id="菜刀" class="emoji_img">'
-            },
-            {
-                pattern: /\[炸弹\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_71@2x.png" id="炸弹" class="emoji_img">'
-            },
-            {
-                pattern: /\[便便\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_75@2x.png" id="便便" class="emoji_img">'
-            },
-            {
-                pattern: /\[月亮\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_76@2x.png" id="月亮" class="emoji_img">'
-            },
-            {
-                pattern: /\[太阳\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_77@2x.png" id="太阳" class="emoji_img">'
-            },
-            {
-                pattern: /\[庆 祝\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Party.png" id="庆祝" class="emoji_img">'
-            },
-            {
-                pattern: /\[礼物\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_78@2x.png" id="礼物" class="emoji_img">'
-            },
-            {
-                pattern: /\[红包\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/2_09.png" id="红包" class="emoji_img">'
-            },
-            {
-                pattern: /\[發\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/2_16.png" id="發" class="emoji_img">'
-            },
-            {
-                pattern: /\[福\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/2_15.png" id="福" class="emoji_img">'
-            },
-            {
-                pattern: /\[烟花\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Fireworks.png" id="烟花" class="emoji_img">'
-            },
-            {
-                pattern: /\[爆竹\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/newemoji/Firecracker.png" id="爆竹" class="emoji_img">'
-            },
-            {
-                pattern: /\[猪头\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_63@2x.png" id="猪头" class="emoji_img">'
-            },
-            {
-                pattern: /\[跳跳\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_93@2x.png" id="跳跳" class="emoji_img">'
-            },
-            {
-                pattern: /\[发抖\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_94@2x.png" id="发抖" class="emoji_img">'
-            },
-            {
-                pattern: /\[转圈\]/g,
-                replacement: '<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.2.8/assets/Expression/Expression_96@2x.png" id="转圈" class="emoji_img">'
+    <script>
+        function musicPlay(isPlay) {
+            var media = document.querySelector('#audioDom');
+            if (isPlay && media.paused) {
+                media.play();
             }
-        ];
-
-        // 循环遍历替换规则
-        for (var i = 0; i < replacementRules.length; i++) {
-            var rule = replacementRules[i];
-            text = text.replace(rule.pattern, rule.replacement);
-        }
-        return text;
-    }
-
-    function timestampToTime(timestamp) {
-        let date = new Date(timestamp * 1000);
-        let year = date.getFullYear() + '-';
-        let month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-        let day = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' ';
-        let hour =date.getHours()>11?'下午':'上午' +(date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
-        
-        let minute = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
-        return year + month + day + hour + minute;
-    }
-
-    // 生成各类标签的函数
-    function add5MinTimeTag(message) {
-        if (message.timestamp - lastTimeStamp > 300) {
-            const newTimeMessage = document.createElement('div');
-            newTimeMessage.className = "item item-center";
-            newTimeMessage.innerHTML = `<span>${timestampToTime(message.timestamp)}</span>`;
-            chatContainer.appendChild(newTimeMessage);
-            lastTimeStamp = message.timestamp;
-            // console.log("增加时间元素", timestampToTime(message.timestamp));
-        }
-    }
-
-    function messageBubble(message, side) {
-        const messageBubbleTag = document.createElement('div');
-        messageBubbleTag.className = `bubble bubble-${side}`;
-        messageBubbleTag.innerHTML = replaceEmoji(message.text);
-        return messageBubbleTag;
-    }
-
-    function displayNameBox(message) {
-        const displayName = document.createElement('div');
-        displayName.className = "displayname";
-        displayName.innerHTML = message.displayname;
-        return displayName;
-    }
-
-    function avatarBox(message) {
-        const avatarTag = document.createElement('div');
-        avatarTag.className = "avatar";
-        avatarTag.innerHTML = `<img src="${message.avatar_path}" loading="lazy" />`
-        return avatarTag;
-    }
-
-    function messageImgBox(message) {
-        const messageImgTag = document.createElement('div');
-        messageImgTag.className = `chat-image`;
-        messageImgTag.innerHTML = `<img src="${message.text}" onclick="showModal(this)" loading="lazy"/>`;
-        return messageImgTag;
-    }
-
-    function messageVideoBox(message) {
-        const messageVideoTag = document.createElement('div');
-        messageVideoTag.className = `chat-video`;
-        messageVideoTag.innerHTML = `<video src="${message.text}" controls />`;
-        return messageVideoTag;
-    }
-
-    function messageElementReferText(message, side) {
-        const messageElementRefer = document.createElement('div');
-        messageElementRefer.className = `chat-refer chat-refer-${side}`;
-        messageElementRefer.innerHTML = replaceEmoji(message.refer_text);
-        return messageElementRefer;
-    }
-
-    function messageVoiceToTextBubble(message, side) {
-        const messageVoiceToTextTag = document.createElement('div');
-        messageVoiceToTextTag.className = `bubble bubble-${side}`;
-        messageVoiceToTextTag.innerHTML = message.voice_to_text;
-        return messageVoiceToTextTag;
-    }
-
-    function messageAudioBox(message) {
-        const messageAudioTag = document.createElement('div');
-        messageAudioTag.className = `chat-audio`;
-        messageAudioTag.innerHTML = `<audio src="${message.text}" controls></audio>`;
-        return messageAudioTag;
-    }
-
-    function messageCard(message) {
-        const messageTag = document.createElement('div');
-        messageTag.className = `card`;
-        messageTag.innerHTML = `<a href="${message.url}" target="_blank">
-                        <div class="card-content">
-                            <h2 title="${message.title}">${message.title}</h2>
-                            <div class="description">
-                                <p title="${message.description}">${message.description}</p>
-                                <img loading="lazy" class="thumbnail" src="${message.thumbnail}" alt="Thumbnail">
-                            </div>
-                        </div>
-                        <div class="link-info">
-                            <img loading="lazy" class="app-logo" src="${message.app_logo}" alt="App Logo">
-                            <span class="app-name">${message.app_name}</span>
-                        </div>
-                    </a>`;
-        return messageTag;
-    }
-
-    function messageFileBox(message) {
-        const messageFileTag = document.createElement('div');
-        messageFileTag.className = `chat-file`;
-        messageFileTag.onclick = function (event) {
-            if (message.text !== '') {
-                window.open(message.text, '_blank');
-            } else {
-                alert("文件可能丢失、过期或不存放在该主机上")
-            }
-        }
-        messageFileTag.innerHTML = `<div class="file-box">
-                    <div class="file-info flex1">
-                        <div class="file-title" title="${message.file_name}">${message.file_name}</div>
-                        <div class="file-size">${message.file_size}</div>
-                    </div>
-                    <div class="file-img flex2">
-                        <img src="${message.icon_path}"/>
-                    </div>
-                </div>` +
-            (message.app_name ? `<div class="app-info"><p>${message.app_name}</p></div>` : "");
-        return messageFileTag;
-    }
-
-    function messageMusicAudioBox(message) {
-        const messageMusicAudioTag = document.createElement('div');
-        messageMusicAudioTag.className = `chat-music-audio`;
-        messageMusicAudioTag.dataset.link = message.link_url;
-        messageMusicAudioTag.onclick = function (event) {
-            if (!event.target.classList.contains('play-button')) {
-                window.open(message.link_url, '_blank');
-            }
-        }
-        if (message.title.length >= 39) {
-            message.title = message.title.slice(0, 38) + '...'
-        }
-        messageMusicAudioTag.innerHTML = `<div class="player-box">
-                <div class="player-info flex1">
-                    <div class="song-title">${message.title}</div>
-                </div>
-                <div class="player-controls flex2">
-                </div>
-                </div>
-                <div class="player-original"><p>${message.website_name}</p></div>
-
-                `
-        if (message.text != '') {
-            var audio = document.createElement('audio');
-            audio.src = message.text;
-            messageMusicAudioTag.querySelector('.player-controls').append(audio)
-        }
-        ;
-        var artist = document.createElement('div');
-        artist.className = 'artist';
-        artist.innerHTML = message.artist
-        if (message.title.length < 26) {
-            messageMusicAudioTag.querySelector('.player-info').append(artist)
-        }
-        var playButton = document.createElement('button');
-        playButton.className = 'play-button paused';
-        playButton.onclick = function (event) {
-            event.stopPropagation(); // 阻止点击播放按钮时触发父级的点击事件
-            toggleAudio(event.target);
-        };
-        if (message.is_send) {
-            messageMusicAudioTag.querySelector('.player-controls').append(playButton)
-        } else {
-            messageMusicAudioTag.querySelector('.player-controls').prepend(playButton)
-        }
-        return messageMusicAudioTag;
-    }
-
-    // 从数据列表中取出对应范围的元素并添加到容器中
-    for (let i = startIndex; i < endIndex && i < chatMessages.length; i++) {
-        const message = chatMessages[i];
-        add5MinTimeTag(message);
-        const messageElement = document.createElement('div'); // 下面那俩的合体
-        const avatarTag = avatarBox(message); // 头像
-        const messageContent = document.createElement('div'); // 除了avatar之外的所有
-        const side = message.is_send ? "right" : "left";
-        if (message.type == 1) {
-            // displayname 和 bubble
-            messageContent.className = `content-wrapper content-wrapper-${side}`;
-            if (message.is_chatroom && !message.is_send) {
-                messageContent.appendChild(displayNameBox(message));
-            }
-            messageContent.appendChild(messageBubble(message, side));
-
-            // 整合
-            messageElement.className = `item item-${side}`;
-            messageElement.appendChild(message.is_send ? messageContent : avatarTag);
-            messageElement.appendChild(message.is_send ? avatarTag : messageContent);
-        } else if (message.type == 0) {
-            messageElement.className = "item item-center";
-            messageElement.innerHTML = `<span class="system-msg">${replaceEmoji(message.text)}</span>`;
-        } else if (message.type == 3) {
-            // displayname 和 img
-            messageContent.className = `content-wrapper content-wrapper-${side}`;
-            if (message.is_chatroom && !message.is_send) {
-                messageContent.appendChild(displayNameBox(message));
-            }
-            messageContent.appendChild(messageImgBox(message));
-
-            // 整合
-            messageElement.className = `item item-${side}`;
-            messageElement.appendChild(message.is_send ? messageContent : avatarTag);
-            messageElement.appendChild(message.is_send ? avatarTag : messageContent);
-        } else if (message.type == 43) {
-            // displayname 和 video
-            messageContent.className = `content-wrapper content-wrapper-${side}`;
-            if (message.is_chatroom && !message.is_send) {
-                messageContent.appendChild(displayNameBox(message));
-            }
-            messageContent.appendChild(messageVideoBox(message));
-
-            // 整合
-            messageElement.className = `item item-${side}`;
-            messageElement.appendChild(message.is_send ? messageContent : avatarTag);
-            messageElement.appendChild(message.is_send ? avatarTag : messageContent);
-        } else if (message.type == 49) {
-            if (message.sub_type == 57) {
-                // displayname 和 bubble 和 refer
-                messageContent.className = `content-wrapper content-wrapper-${side}`;
-                if (message.is_chatroom && !message.is_send) {
-                    messageContent.appendChild(displayNameBox(message));
-                }
-                messageContent.appendChild(messageBubble(message, side));
-                if (message.refer_text) {
-                    messageContent.appendChild(messageElementReferText(message, side));
-                }
-
-                // 整合
-                messageElement.className = `item item-${side}`;
-                messageElement.appendChild(message.is_send ? messageContent : avatarTag);
-                messageElement.appendChild(message.is_send ? avatarTag : messageContent);
-            } else if (message.sub_type == 6) {
-                // displayname 和 file
-                messageContent.className = `content-wrapper content-wrapper-${side}`;
-                if (message.is_chatroom && !message.is_send) {
-                    messageContent.appendChild(displayNameBox(message));
-                }
-                messageContent.appendChild(messageFileBox(message));
-
-                // 整合
-                messageElement.className = `item item-${side}`;
-                messageElement.appendChild(message.is_send ? messageContent : avatarTag);
-                messageElement.appendChild(message.is_send ? avatarTag : messageContent);
-            } else if (message.sub_type == 3) {
-                // displayname 和 file
-                messageContent.className = `content-wrapper content-wrapper-${side}`;
-                if (message.is_chatroom && !message.is_send) {
-                    messageContent.appendChild(displayNameBox(message));
-                }
-                messageContent.appendChild(messageMusicAudioBox(message));
-
-                // 整合
-                messageElement.className = `item item-${side}`;
-                messageElement.appendChild(message.is_send ? messageContent : avatarTag);
-                messageElement.appendChild(message.is_send ? avatarTag : messageContent);
-            } else if (message.sub_type == 5) {
-                // displayname 和 file
-                messageContent.className = `content-wrapper content-wrapper-${side}`;
-                if (message.is_chatroom && !message.is_send) {
-                    messageContent.appendChild(displayNameBox(message));
-                }
-                messageContent.appendChild(messageCard(message));
-
-                // 整合
-                messageElement.className = `item item-${side}`;
-                messageElement.appendChild(message.is_send ? messageContent : avatarTag);
-                messageElement.appendChild(message.is_send ? avatarTag : messageContent);
-            }
-
-        } else if (message.type == 34) {
-            // displayname 和 转的文字 和 audio
-            messageContent.className = `content-wrapper content-wrapper-${side}`;
-            if (message.is_chatroom && !message.is_send) {
-                messageContent.appendChild(displayNameBox(message));
-            }
-            if (message.voice_to_text) {
-                messageContent.appendChild(messageVoiceToTextBubble(message, side));
-            }
-            messageContent.appendChild(messageAudioBox(message));
-
-            // 整合
-            messageElement.className = `item item-${side}`;
-            messageElement.appendChild(message.is_send ? messageContent : avatarTag);
-            messageElement.appendChild(message.is_send ? avatarTag : messageContent);
-        }
-        chatContainer.appendChild(messageElement);
-    }
-    document.querySelector("#chat-container").scrollTop = lastScrollTop;
-    updatePaginationInfo();
-    refreshMediaListener();
-}
-
-function prevPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        reachedBottom = false;
-        renderPage(currentPage);
-    }
-}
-
-function nextPage() {
-    const totalPages = Math.ceil(chatMessages.length / itemsPerPage);
-    if (currentPage < totalPages) {
-        currentPage++;
-        renderPage(currentPage);
-    }
-}
-
-function updatePaginationInfo() {
-    const totalPages = Math.ceil(chatMessages.length / itemsPerPage);
-    const paginationInfo = document.getElementById('gotoPage');
-    paginationInfo.value = `${currentPage}`;
-}
-
-function gotoPage() {
-    const targetPage = parseInt(1);
-
-    if (targetPage >= 1 && targetPage <= totalPages) {
-        currentPage = targetPage;
-        renderPage(currentPage);
-    } else {
-        alert('请输入有效的页码');
-    }
-}
-
-
-function checkScroll() {
-    var chatContainer = document.getElementById("chat-container");
-
-    // 检查滚动条是否滑到底部
-    if (chatContainer.scrollHeight - chatContainer.scrollTop - 10 <= chatContainer.clientHeight) {
-        // 如果滚动条在底部
-        if (!reachedBottom) {
-            // 设置标记并返回
-            reachedBottom = true;
-            lastScrollTop = chatContainer.scrollTop;
-        }
-        if (reachedBottom) {
-            nextPage();
-        }
-    }
-}
-
-// 初始化页面
-renderPage(currentPage);
-function refreshMediaListener() {
-    const audioTags = document.querySelectorAll('audio');
-    const videoTags = document.querySelectorAll('video');
-
-    audioTags.forEach(audio => {
-        audio.addEventListener('play', function () {
-            pauseOtherMedia(audio);
-        });
-    });
-    videoTags.forEach(video => {
-        video.addEventListener('play', function () {
-            pauseOtherMedia(video);
-        });
-    });
-
-    function pauseOtherMedia(currentMedia) {
-        const audioTags = document.querySelectorAll('audio');
-        const videoTags = document.querySelectorAll('video');
-        audioTags.forEach(media => {
-            if (media !== currentMedia && !media.paused) {
+            if (!isPlay && !media.paused) {
                 media.pause();
             }
-        });
-        videoTags.forEach(media => {
-            if (media !== currentMedia && !media.paused) {
-                media.pause();
-            }
-        });
-    }
-}
-
-refreshMediaListener();
-
-function showModal(image) {
-    var modal = document.getElementById("modal");
-    var modalImage = document.getElementById("modal-image");
-    modal.style.display = "block";
-    modalImage.src = image.src;
-    // console.log(image.src);
-}
-
-function hideModal() {
-    var modal = document.getElementById("modal");
-    modal.style.display = "none";
-}
-
-function toggleAudio(buttonElm) {
-    var audioPlayer = buttonElm.parentNode;
-    var audio = audioPlayer.querySelector('audio');
-    if (audio == null) {
-        alert("该音频已失效或无法直接播放，有需要请点击音频链接查看")
-    } else {
-        if (audio.paused) {
-            audio.play();
-            buttonElm.classList.remove('paused');
-            buttonElm.classList.add('playing');
-        } else {
-            audio.pause();
-            buttonElm.classList.remove('playing');
-            buttonElm.classList.add('paused');
         }
-    }
 
+        function musicInBrowserHandler() {
+            setTimeout(function() {
+                musicPlay(true)
+            }, 0)
+        }
+        document.body.addEventListener('touchstart', musicInBrowserHandler);
+        $('#yhBtn').click(e => {
+            $('#yhBtn').hide()
+            setTimeout(() => {
+                start()
+                fireworks();
+            }, 1600) // 
+            setTimeout(() => {
+                function audioAutoPlay() {
+                    var audio = document.getElementById('audioDom');
+                    audio.play();
+                }
+                audioAutoPlay();
+            }, 800) // 
+            console.log(updateConfig({
+                autoLaunch: true
+            }));
+        })
+
+        function fireworks() {
+            $('.page_one').addClass('hide');
+            $('.page_two').removeClass('hide');
+        }
+
+        function start() {
+            let str = $("#text").html(); //"于我而言，你是最好且是唯一"
+            let str_ = ''
+            let i = 0
+            let content = document.getElementById('contents')
+            let timer = setInterval(() => {
+                if (str_.length < str.length) {
+                    str_ += str[i++]
+                    content.innerHTML = '<p>' + str_ + '<span class="xx" style="opacity: 1;    color: white;">∎</span></p>' //打印时加光标
+                } else {
+                    clearInterval(timer)
+                    content.innerHTML = '<p>' + str_ + '</p>'
+                }
+            }, 100)
+        }
+
+        $(function() {
+            $.get("https://ai8.top/api/addViews?id=1016432");
+        });
+    </script><!--!‬‏‬‫‭‫‫‬‫‭‫‬‬‏‭‭‪‏‬‎‫‬‎‎-->
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c314395e62fb55e30828e0ea8cca8b3a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+<script>
+		function time() {
+    window.setTimeout("time()", 1000);
+    var seconds = 1000
+    var minutes = seconds * 60
+    var hours = minutes * 60
+    var days = hours * 24
+    var years = days * 365
+    var today = new Date()
+    var todayYear = today.getFullYear()
+    var newYear=todayYear+1
+    var lastYear=todayYear-1
+    var todayMonth = today.getMonth() + 1
+    var todayDate = today.getDate()
+    var todayHour = today.getHours()
+    var todayMinute = today.getMinutes()
+    var todaySecond = today.getSeconds()
+    var t1 = Date.UTC(newYear, 1, 1, 0, 00, 00)
+    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond)
+    var diff = t1 - t2
+    var diff2 = t2-t1
+    var diffYears = Math.floor(diff / years)
+    var diffDays = Math.floor((diff / days) - diffYears * 365)
+    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours)
+    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes)
+    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+        minutes) / seconds)
+    var diff2Years = Math.floor(diff2 / years)
+    var diff2Days = Math.floor((diff2 / days) - diff2Years * 365)
+    var diff2Hours = Math.floor((diff2 - (diff2Years * 365 + diff2Days) * days) / hours)
+    var diff2Minutes = Math.floor((diff2 - (diff2Years * 365 + diff2Days) * days - diff2Hours * hours) / minutes)
+    var diff2Seconds = Math.floor((diff2 - (diff2Years * 365 + diff2Days) * days - diff2Hours * hours - diff2Minutes *
+        minutes) / seconds)
+     if(todayMonth==1){
+        if(todayDate==1){document.getElementById("text1").innerHTML =  "现在是1月1日,祝你"+todayYear+"新年快乐！"}}
+     else{document.getElementById("text1").innerHTML =  "提前祝你"+newYear+"新年快乐"}
+     document.getElementById("time").innerHTML =  diffDays + "天" + diffHours + "小时" + diffMinutes + "分钟" + diffSeconds + "秒"+newYear
+    //  if(todayMonth==12){document.getElementById("copyright").innerHTML ="Copyright © 2022-"+newYear+" Core Studio. All rights reserved."}
+    //  else{document.getElementById("copyright").innerHTML ="Copyright © 2022-"+todayYear+" Core Studio. All rights reserved."}
 }
+time()
 </script>
+倒计时
+
 </body>
+
 </html>
